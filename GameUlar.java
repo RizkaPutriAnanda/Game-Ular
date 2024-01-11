@@ -31,15 +31,27 @@ public class GameUlar {
     }
 
     private void showMainMenu() {
-        JPanel mainMenuPanel = new JPanel();
+        JPanel mainMenuPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Tambahkan gambar latar belakang di sini
+                ImageIcon background = new ImageIcon("C:\\Users\\ASUS\\Documents\\game.jpg");
+                g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
         mainMenuPanel.setLayout(new BoxLayout(mainMenuPanel, BoxLayout.Y_AXIS));
 
         JLabel titleLabel = new JLabel("Selamat datang di Game Ular!");
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleLabel.setForeground(Color.WHITE);  // Tambahkan warna teks
         mainMenuPanel.add(titleLabel);
 
         JButton startButton = new JButton("Mulai Game");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        startButton.setBackground(new Color(0, 128, 0));
+        startButton.setForeground(Color.WHITE);
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
@@ -52,6 +64,8 @@ public class GameUlar {
 
         JButton exitButton = new JButton("Keluar");
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        exitButton.setBackground(new Color(178, 34, 34));
+        exitButton.setForeground(Color.WHITE);
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
